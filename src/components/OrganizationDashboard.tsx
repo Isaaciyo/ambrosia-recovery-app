@@ -1,8 +1,21 @@
-import { Activity, Users, Star, TrendingUp, LogOut, MapPin } from "lucide-react";
+import {
+  Activity,
+  Users,
+  Star,
+  TrendingUp,
+  LogOut,
+  MapPin,
+} from "lucide-react";
 import { Button } from "./ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 import { Badge } from "./ui/badge";
-import { Avatar, AvatarFallback } from "./ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 interface OrganizationDashboardProps {
   onLogout: () => void;
@@ -10,13 +23,44 @@ interface OrganizationDashboardProps {
 }
 
 const mockStaff = [
-  { id: 1, name: "Dr. Sarah Johnson", role: "Orthopedic Surgeon", patients: 12, rating: 4.9 },
-  { id: 2, name: "Mike Thompson", role: "Physical Therapist", patients: 18, rating: 4.8 },
-  { id: 3, name: "Dr. Emily Chen", role: "Sports Psychologist", patients: 8, rating: 5.0 },
-  { id: 4, name: "Dr. Robert Lee", role: "Orthopedic Surgeon", patients: 15, rating: 4.7 },
+  {
+    id: 1,
+    name: "Dr. Sarah Johnson",
+    image: "",
+    role: "Orthopedic Surgeon",
+    patients: 12,
+    rating: 4.9,
+  },
+  {
+    id: 2,
+    name: "Mike Thompson",
+    image: "",
+    role: "Physical Therapist",
+    patients: 18,
+    rating: 4.8,
+  },
+  {
+    id: 3,
+    name: "Dr. Emily Chen",
+    image: "",
+    role: "Sports Psychologist",
+    patients: 8,
+    rating: 5.0,
+  },
+  {
+    id: 4,
+    name: "Dr. Robert Lee",
+    image: "",
+    role: "Orthopedic Surgeon",
+    patients: 15,
+    rating: 4.7,
+  },
 ];
 
-export function OrganizationDashboard({ onLogout, userId }: OrganizationDashboardProps) {
+export function OrganizationDashboard({
+  onLogout,
+  userId,
+}: OrganizationDashboardProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="border-b bg-white sticky top-0 z-50">
@@ -38,7 +82,9 @@ export function OrganizationDashboard({ onLogout, userId }: OrganizationDashboar
           <p className="text-gray-600">Louisiana Sports Medicine Center</p>
           <div className="flex items-center gap-2 mt-2">
             <MapPin className="w-4 h-4 text-gray-600" />
-            <span className="text-sm text-gray-600">Baton Rouge, Louisiana</span>
+            <span className="text-sm text-gray-600">
+              Baton Rouge, Louisiana
+            </span>
             <Badge variant="secondary" className="ml-2">
               <Star className="w-3 h-3 mr-1 inline-block fill-yellow-500 text-yellow-500" />
               4.8 Rating
@@ -55,7 +101,9 @@ export function OrganizationDashboard({ onLogout, userId }: OrganizationDashboar
             </CardHeader>
             <CardContent>
               <div className="text-3xl">{mockStaff.length}</div>
-              <p className="text-sm text-gray-600 mt-1">Healthcare professionals</p>
+              <p className="text-sm text-gray-600 mt-1">
+                Healthcare professionals
+              </p>
             </CardContent>
           </Card>
 
@@ -65,7 +113,9 @@ export function OrganizationDashboard({ onLogout, userId }: OrganizationDashboar
             </CardHeader>
             <CardContent>
               <div className="text-3xl">53</div>
-              <p className="text-sm text-gray-600 mt-1">Currently in treatment</p>
+              <p className="text-sm text-gray-600 mt-1">
+                Currently in treatment
+              </p>
             </CardContent>
           </Card>
 
@@ -75,7 +125,9 @@ export function OrganizationDashboard({ onLogout, userId }: OrganizationDashboar
             </CardHeader>
             <CardContent>
               <div className="text-3xl">87%</div>
-              <p className="text-sm text-gray-600 mt-1">Return-to-play clearances</p>
+              <p className="text-sm text-gray-600 mt-1">
+                Return-to-play clearances
+              </p>
             </CardContent>
           </Card>
 
@@ -97,20 +149,29 @@ export function OrganizationDashboard({ onLogout, userId }: OrganizationDashboar
         <Card className="mb-8">
           <CardHeader>
             <CardTitle>Staff Directory</CardTitle>
-            <CardDescription>Healthcare professionals at your facility</CardDescription>
+            <CardDescription>
+              Healthcare professionals at your facility
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               {mockStaff.map((staff) => (
-                <div key={staff.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div
+                  key={staff.id}
+                  className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+                >
                   <div className="flex items-center gap-4">
                     <Avatar className="w-12 h-12">
-                      <AvatarFallback>
-                        {staff.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </AvatarFallback>
+                      {staff.image ? (
+                        <AvatarImage src={staff.image} />
+                      ) : (
+                        <AvatarFallback>
+                          {staff.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}
+                        </AvatarFallback>
+                      )}
                     </Avatar>
                     <div>
                       <h4>{staff.name}</h4>
@@ -182,14 +243,17 @@ export function OrganizationDashboard({ onLogout, userId }: OrganizationDashboar
                 <div className="flex items-center gap-2 mb-2">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-500 text-yellow-500" />
+                      <Star
+                        key={i}
+                        className="w-4 h-4 fill-yellow-500 text-yellow-500"
+                      />
                     ))}
                   </div>
                   <span className="text-sm text-gray-600">2 days ago</span>
                 </div>
                 <p className="text-sm">
-                  "Excellent care and support throughout my ACL recovery. The team was professional
-                  and caring."
+                  "Excellent care and support throughout my ACL recovery. The
+                  team was professional and caring."
                 </p>
               </div>
 
@@ -197,14 +261,17 @@ export function OrganizationDashboard({ onLogout, userId }: OrganizationDashboar
                 <div className="flex items-center gap-2 mb-2">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-500 text-yellow-500" />
+                      <Star
+                        key={i}
+                        className="w-4 h-4 fill-yellow-500 text-yellow-500"
+                      />
                     ))}
                   </div>
                   <span className="text-sm text-gray-600">1 week ago</span>
                 </div>
                 <p className="text-sm">
-                  "The mental health support made all the difference in my recovery journey. Highly
-                  recommend!"
+                  "The mental health support made all the difference in my
+                  recovery journey. Highly recommend!"
                 </p>
               </div>
             </CardContent>
